@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/newyear.css') }}">
+</head>
+<body>
+
+<canvas id="fireworks"></canvas>
+<canvas id="confetti"></canvas>
+<canvas id="shooting-stars"></canvas>
+
+<div class="balloons"></div>
+
+<div class="center">
+    <div id="waiting-text">✨ Wait for the moment to happen ✨</div>
+
+    <div id="countdown">
+        <div><span id="days">00</span><small>Days</small></div>
+        <div><span id="hours">00</span><small>Hours</small></div>
+        <div><span id="minutes">00</span><small>Minutes</small></div>
+        <div><span id="seconds">00</span><small>Seconds</small></div>
+    </div>
+
+    <div class="year">
+        <span>2</span>
+        <span>0</span>
+        <span>2</span>
+        <span id="five">5</span>
+        <div id="six-wrapper">
+            <span id="six">6</span>
+            <div class="six-balloon">
+                <div class="balloon-body"></div>
+                <div class="balloon-thread"></div>
+            </div>
+        </div>
+    </div>
+
+    <h1 id="happy-text">🎉 Happy New Year 2026 🎉</h1>
+
+    <div id="wishes">
+        <span>✨ May this year bring you happiness</span>
+        <span>🌟 New hopes, new dreams, new beginnings</span>
+        <span>💖 Health, peace & success always</span>
+        <span>🚀 Let 2026 be unforgettable</span>
+    </div>
+    <button id="nextBtn" class="glow-on-hover" type="button" style="display:none;"></button>
+</div>
+
+<audio id="instrumental" src="{{ url_for('static', filename='music/instrumental.mp3') }}" autoplay loop></audio>
+<audio id="music" src="{{ url_for('static', filename='music/newyear.mp3') }}"></audio>
+<script src="{{ url_for('static', filename='js/newyear.js') }}"></script>
+</body>
+</html>

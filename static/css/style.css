@@ -1,0 +1,247 @@
+/* =======================
+   RESET
+======================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* =======================
+   INITIAL VISIBILITY
+======================= */
+#main-screen,
+#end-screen {
+    display: none;
+}
+
+/* =======================
+   OVERLAY & POPUP
+======================= */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(120deg, #1d2671, #000000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.popup-card {
+    background: #ffffff;
+    padding: 45px;
+    border-radius: 25px;
+    width: 420px;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    animation: popIn 0.8s ease;
+}
+
+.popup-card button {
+    margin-top: 25px;
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: none;
+    background: #ff6f61;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.exit {
+    animation: popOut 0.7s forwards;
+}
+
+@keyframes popOut {
+    to { transform: scale(0.6); opacity: 0; }
+}
+
+/* =======================
+   MAIN SCREEN
+======================= */
+#main-screen {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =======================
+   STARS CANVAS
+======================= */
+#stars {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+/* =======================
+   INSTRUCTION
+======================= */
+.instruction {
+    position: absolute;
+    top: 20px;
+    font-size: 1.4rem;
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 0 15px rgba(255,255,255,0.6);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+/* =======================
+   CARDS GRID (UNCHANGED)
+======================= */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(4, 220px);
+    grid-template-rows: repeat(2, 280px);
+    gap: 32px;
+    z-index: 5;
+}
+
+/* =======================
+   MEMORY CARD
+======================= */
+.memory-card {
+    position: relative;
+    width: 220px;
+    background: #0c0c0c;
+    border-radius: 10px;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.08),
+        0 12px 30px rgba(0,0,0,0.6);
+
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.memory-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.15),
+        0 20px 45px rgba(0,0,0,0.75);
+}
+
+/* =======================
+   FILM HOLES
+======================= */
+.film-holes {
+    width: 90%;
+    height: 12px;
+    background: repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent 6px,
+        #e6e6e6 6px,
+        #e6e6e6 12px
+    );
+    margin: 6px 0;
+}
+
+.film-holes.top {
+    margin-top: 10px;
+}
+
+.film-holes.bottom {
+    margin-bottom: 10px;
+}
+
+/* =======================
+   PHOTO AREA (FIXED SIZE)
+======================= */
+.photo-area {
+    width: 90%;
+    height: 140px;          /* SAME SIZE AS YOUR ORIGINAL */
+    background: #000;
+    border-radius: 4px;
+    margin: 8px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+/* =======================
+   IMAGE HOLDER (FULL IMAGE)
+======================= */
+.card-inner {
+    width: 100%;
+    height: 100%;
+
+    background-size: contain;   /* FULL IMAGE, NO CROP */
+    background-position: center;
+    background-repeat: no-repeat;
+
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.memory-card.hovered .card-inner {
+    opacity: 1;
+}
+
+/* =======================
+   CAPTION
+======================= */
+.caption {
+    width: 90%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.9rem;
+    padding: 4px 0;
+    line-height: 1.2rem;
+}
+
+/* =======================
+   FINAL BUTTON
+======================= */
+.memory-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 14px 24px;
+    border-radius: 30px;
+    border: none;
+    background: #4a90e2;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* =======================
+   FLOATING WORDS
+======================= */
+.floating-words span {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.15;
+    color: white;
+    background: rgba(255,255,255,0.1);
+    padding: 4px 8px;
+    transform: rotate(-5deg);
+}

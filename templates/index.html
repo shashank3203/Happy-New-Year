@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Memories</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- INTRO POPUP -->
+<div id="intro-screen" class="overlay">
+    <div class="popup-card" id="intro-card">
+        <h1>Hey 😊</h1>
+        <br>
+        <p>Want to look back at some beautiful old memories?</p>
+        <button id="enter-btn">Let’s Go 💫</button>
+    </div>
+</div>
+
+<!-- MAIN SCREEN -->
+<div id="main-screen">
+    <canvas id="stars"></canvas>
+
+    <div class="instruction">
+        ✨ Hover over cards to reveal memories ✨
+    </div>
+
+    <div class="cards-container">
+
+        <div class="memory-card" data-img="{{ url_for('static', filename='images/img1.jpg') }}">
+            <div class="film-holes top"></div>
+
+            <div class="photo-area">
+                <div class="card-inner"></div>
+            </div>
+
+            <div class="caption">Quiet moments over single cups, needed two ☕☕✨</div>
+
+            <div class="film-holes bottom"></div>
+        </div>
+
+        <div class="memory-card" data-img="{{ url_for('static', filename='images/img2.jpg') }}">
+            <div class="film-holes top"></div>
+            <div class="photo-area"><div class="card-inner"></div></div>
+            <div class="caption">The way your song filled the air, I could never forget 🎶💫</div>
+            <div class="film-holes bottom"></div>
+        </div>
+
+        <div class="memory-card" data-img="{{ url_for('static', filename='images/img3.jpg') }}">
+            <div class="film-holes top"></div>
+            <div class="photo-area"><div class="card-inner"></div></div>
+            <div class="caption">Some sights make you pause and simply breathe 🏔️🌿</div>
+            <div class="film-holes bottom"></div>
+        </div>
+
+        <div class="memory-card" data-img="{{ url_for('static', filename='images/img4.jpg') }}">
+            <div class="film-holes top"></div>
+            <div class="photo-area"><div class="card-inner"></div></div>
+            <div class="caption">Small joys in unexpected places 😄🛤️</div>
+            <div class="film-holes bottom"></div>
+        </div>
+
+        <div class="memory-card" data-img="{{ url_for('static', filename='images/img5.jpg') }}">
+            <div class="film-holes top"></div>
+            <div class="photo-area"><div class="card-inner"></div></div>
+            <div class="caption">Captured without planning or?🌸💛</div>
+            <div class="film-holes bottom"></div>
+        </div>
+
+        <div class="memory-card" data-img="{{ url_for('static', filename='images/img6.jpg') }}">
+            <div class="film-holes top"></div>
+            <div class="photo-area"><div class="card-inner"></div></div>
+            <div class="caption">Each sunrise whispered new beginnings 🌅✨</div>
+            <div class="film-holes bottom"></div>
+        </div>
+
+        <div class="memory-card" data-img="{{ url_for('static', filename='images/img7.jpg') }}">
+            <div class="film-holes top"></div>
+            <div class="photo-area"><div class="card-inner"></div></div>
+            <div class="caption">Captured a thought, just for you ✏️💭</div>
+            <div class="film-holes bottom"></div>
+        </div>
+
+        <div class="memory-card" data-img="{{ url_for('static', filename='images/img8.jpg') }}">
+            <div class="film-holes top"></div>
+            <div class="photo-area"><div class="card-inner"></div></div>
+            <div class="caption">Soft lights that guided my quiet reflections 🌙💡</div>
+            <div class="film-holes bottom"></div>
+        </div>
+
+    </div>
+
+
+    <button id="final-btn" class="memory-btn">
+        Go to Next Page 😊 ➜
+    </button>
+
+</div>
+
+<!-- FINAL POPUP -->
+<div id="end-screen" class="overlay">
+    <div class="popup-card">
+        <h1>✨ Looked Back?</h1>
+        <br>
+        <p>Those memories made you who you are.<br>Now it’s time to look forward 🌟</p>
+        <button id="newyear-btn">Step Into New Year 🎉</button>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

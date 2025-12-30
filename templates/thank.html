@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Before We Move Forward</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    height: 100vh;
+    background: radial-gradient(circle at top, #1a1a2e, #000);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* FLOATING STARS */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    opacity: 0.6;
+    animation: float 8s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
+
+/* CENTER CONTENT */
+.container, .next-container {
+    text-align: center;
+    max-width: 700px;
+    padding: 20px;
+    position: relative;
+}
+
+/* LINES */
+.line, .next-line {
+    font-size: 1.6rem;
+    opacity: 0;
+    margin-bottom: 20px;
+    transition: opacity 2s ease;
+}
+
+.line.show, .next-line.show {
+    opacity: 1;
+}
+
+/* FINAL LINE */
+.final, .next-final {
+    font-size: 1.9rem;
+    font-weight: 500;
+}
+
+/* BUTTON */
+button {
+    margin-top: 40px;
+    padding: 14px 36px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 2s ease, transform 0.3s ease;
+}
+
+button.show {
+    opacity: 1;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* FADE IN PAGE */
+body {
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FIRST SCREEN -->
+<div class="container" id="firstContainer">
+    <div class="line" id="l1">Some moments change a year…</div>
+    <div class="line" id="l2">Some moments change us.</div>
+    <div class="line" id="l3">2025 had its ups and downs.</div>
+    <div class="line" id="l4">But it gave me something real.</div>
+
+    <div class="line final" id="l5">2025 will always be special because…</div>
+    <div class="line final" id="l6">you were part of it.</div>
+
+    <button id="continueBtn">There’s something I want to say →</button>
+</div>
+
+<!-- SECOND SCREEN -->
+<div class="next-container" id="secondContainer" style="display:none;">
+    <div class="next-line" id="n1">Thank you for being such an incredible part of my 2025.</div>
+    <div class="next-line" id="n2">May the memories we created continue to brighten our 2026,</div>
+    <div class="next-line next-final" id="n3">and may joy, laughter, and magic follow us through the new year.</div>
+
+    <button id="thankBtn">Thanks for visiting! Happy New Year 🎉</button>
+</div>
+
+<!-- SOFT MUSIC -->
+<audio id="bgMusic" loop autoplay>
+    <source src="{{ url_for('static', filename='music/soft.mp3') }}" type="audio/mpeg">
+</audio>
+
+<script>
+// PLAY MUSIC AFTER USER INTERACTION
+document.addEventListener("click", () => {
+    const music = document.getElementById("bgMusic");
+    if (music.paused) music.play();
+}, { once: true });
+
+// FIRST SCREEN TEXT TIMING
+const firstTimings = [
+    { id: "l1", time: 1000 },
+    { id: "l2", time: 4000 },
+    { id: "l3", time: 7000 },
+    { id: "l4", time: 10000 },
+    { id: "l5", time: 14000 },
+    { id: "l6", time: 18000 }
+];
+
+firstTimings.forEach(item => {
+    setTimeout(() => {
+        document.getElementById(item.id).classList.add("show");
+    }, item.time);
+});
+
+// SHOW BUTTON ON FIRST SCREEN
+setTimeout(() => {
+    document.getElementById("continueBtn").classList.add("show");
+}, 23000);
+
+// CREATE STARS
+for (let i = 0; i < 80; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.animationDuration = 5 + Math.random() * 5 + "s";
+    document.body.appendChild(star);
+}
+
+// BUTTON CLICK TO SHOW SECOND SCREEN
+document.getElementById("continueBtn").addEventListener("click", () => {
+    document.getElementById("firstContainer").style.display = "none";
+    const second = document.getElementById("secondContainer");
+    second.style.display = "block";
+
+    // SECOND SCREEN TEXT ANIMATION
+    const secondTimings = [
+        { id: "n1", time: 500 },
+        { id: "n2", time: 3500 },
+        { id: "n3", time: 6500 }
+    ];
+
+    secondTimings.forEach(item => {
+        setTimeout(() => {
+            document.getElementById(item.id).classList.add("show");
+        }, item.time);
+    });
+
+    // SHOW FINAL THANK BUTTON
+    setTimeout(() => {
+        document.getElementById("thankBtn").classList.add("show");
+    }, 9500);
+});
+
+// THANK BUTTON (NO NAVIGATION)
+document.getElementById("thankBtn").addEventListener("click", () => {
+    alert("🎉 Wishing you a fantastic 2026 ahead! 🎉");
+});
+</script>
+
+</body>
+</html>
