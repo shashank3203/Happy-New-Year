@@ -3,6 +3,7 @@ const five=$("five"), sixWrapper=$("six-wrapper"), six=$("six");
 const countdown=$("countdown"), waitingText=$("waiting-text");
 const happyText=$("happy-text"), wishes=$("wishes");
 const music=$("music"), balloonsBox=document.querySelector(".balloons");
+const instrumental = document.getElementById("instrumental");
 
 const newYearDate=new Date("January 1, 2026 00:00:00").getTime();
 let started=false;
@@ -19,38 +20,45 @@ setInterval(()=>{
 },1000);
 
 /* CELEBRATION */
-function startCelebration(){
-    countdown.style.display="none";
-    waitingText.style.display="none";
+function startCelebration() {
+    // Stop countdown UI
+    countdown.style.display = "none";
+    waitingText.style.display = "none";
 
     document.body.style.background = "#000";
 
     sixWrapper.classList.add("show-six");
 
-    setTimeout(()=>{
-        const balloonClone=document.querySelector(".six-balloon").cloneNode(true);
-        balloonClone.style.position="absolute"; balloonClone.style.top="-120px"; balloonClone.style.left="50%";
-        balloonClone.style.transform="translateX(-50%)";
+    setTimeout(() => {
+        const balloonClone = document.querySelector(".six-balloon").cloneNode(true);
+        balloonClone.style.position = "absolute";
+        balloonClone.style.top = "-120px";
+        balloonClone.style.left = "50%";
+        balloonClone.style.transform = "translateX(-50%)";
         five.appendChild(balloonClone);
 
         five.classList.add("push-five");
 
-        setTimeout(()=>{
-            five.style.display="none";
+        setTimeout(() => {
+            five.style.display = "none";
             balloonClone.remove();
-            sixWrapper.style.transform="translateY(0)";
-            six.style.opacity=1;
-        },1200);
-    },2000);
+            sixWrapper.style.transform = "translateY(0)";
+            six.style.opacity = 1;
+        }, 1200);
+    }, 2000);
 
-    setTimeout(()=>{
+    setTimeout(() => {
         happyText.classList.add("show-happy");
         wishes.style.display = "flex";
         typeWishes(); // Typing animation for wishes
+
+        // Stop instrumental and play New Year song
+        if (!instrumental.paused) instrumental.pause();
         music.play();
+
         createBalloons();
         startFireworks();
-    },3500);
+    }, 3500);
 }
 
 /* BALLOONS */
@@ -211,6 +219,7 @@ function typeButtonText(button, text, index = 0) {
         setTimeout(() => typeButtonText(button, text, index + 1), 40);
     }
 }
+
 
 // Redirect button to Flask route
 const nextBtn = document.getElementById("nextBtn");
